@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Makan Apa Backend</title>
+	<link rel="stylesheet" href="/themes/BlueStyle.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" />
+</head>
+<body>
+	<!--Back End Home Page-->
+	<div data-role="page" id="pageBackEndHome">
+		<!--header-->
+		<div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+			<h1 class="ui-title" role="heading">Makan Apa</h1>
+		</div>
+	
+		<!--content-->
+		<div 
+			id="upperContent" 
+			data-role="content" 
+			data-theme="a" 
+			class="ui-content ui-body-a" 
+			role="main" 
+			style=
+			"position : absolute;
+	    	top		: 40px;
+	    	right   : 0;
+	    	bottom  : 40px;
+	    	left    : 0;"
+	    >
+			<a href="#pageBackEndAdd" data-role="button">Add</a>
+		</div>
+		<div 
+			id="bottomContent" 
+			data-role="content" 
+			data-theme="a" 
+			class="ui-content ui-body-a scrollable" 
+			role="main" 
+			style=
+			"position : absolute;
+	    	top		: 130px;
+	    	right   : 0;
+	    	bottom  : 60px;
+	    	left    : 0;"
+	    >
+	    	<ul data-role="listview" data-icon="false">
+	    		<% for(var i=0; i<serverArrayRestaurant.arrayRestaurant.length; i++) {%>
+				   <li><%= serverArrayRestaurant.arrayRestaurant[i] %></li>
+				<% } %>
+            </ul>
+		</div>
+
+		<!--footer-->
+		<div data-role="footer" data-id="foo1" data-position="fixed">
+		    <a href="http://localhost:3000/makanapa" data-role="button" style="width:100%" rel="external">Frontend</a>
+		</div>
+	</div>
+
+	<!--Back End Add Page-->
+	<div data-role="page" id="pageBackEndAdd">
+		<!--header-->
+		<div data-role="header" role="banner" class="ui-header ui-bar-inherit;">
+			<a href="#" data-rel="back" style="height:10px;">Back</a>
+			<h1 class="ui-title" role="heading">Add</h1>
+		</div>
+	
+		<!--content-->
+		<div 
+			id="addContent" 
+			data-role="content" 
+			data-theme="a" 
+			class="ui-content ui-body-a" 
+			role="main" 
+			style=
+			"position : absolute;
+	    	top		: 40px;
+	    	right   : 0;
+	    	bottom  : 40px;
+	    	left    : 0;"
+	    >
+	    	<br/><br/><br/><br/>
+			<input type="text" id="inputAdd" name="inputAdd"/>
+			<button class="ui-btn ui-btn-a" id="btnSubmitInputAdd">Submit</button>
+			<br/><br/>
+		</div>
+
+	</div>
+
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<!--<script src="/javascripts/PhonegapCustomizedInit.js"></script>-->
+	<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+	<script>
+		$("#btnSubmitInputAdd").click(function(){
+			var newRestaurantValue = $("#inputAdd").val();
+			$.post(
+				"http://localhost:3000/makanapabackend/addrestaurant", 
+				{newRestaurant: newRestaurantValue}
+			).done(function( data ) {
+				console.log(data);
+    			window.location = "http://localhost:3000/makanapabackend";
+  			});
+		});
+	</script>
+</body>
+</html>

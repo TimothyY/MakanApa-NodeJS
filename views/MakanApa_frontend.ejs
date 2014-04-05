@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Makan Apa</title>
+	<!--Custom theme roll for JQuery Mobile-->
+	<link rel="stylesheet" href="/themes/BlueStyle.min.css" />
+	<!--Default style for JQuey Mobile-->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" />
+</head>
+<body>
+
+	<!--Front End Home Page-->
+	<div data-role="page" id="pageFrontEndHome">
+		<!--header-->
+		<div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+			<h1 class="ui-title" role="heading"><%= title %></h1>
+		</div>
+	
+		<!--content-->
+		<!--Additional style needed to omit blank space-->
+		<div 
+			id="mainContent" 
+			data-role="content" 
+			data-theme="a" 
+			class="ui-content ui-body-a" 
+			role="main"
+			style=
+			"position : absolute;
+	    	top		: 40px;
+	    	right   : 0;
+	    	bottom  : 40px;
+	    	left    : 0;"
+	    >
+	    	<br/><br/><br/><br/><br/><br/><br/>
+			<button class="ui-btn ui-btn-a" id="result">Decide for me</button>
+		</div>
+	
+		<!--footer-->
+		<div data-role="footer" data-id="foo1" data-position="fixed">
+			<!--rel="external" is needed to perserve multi-page hashId -->
+		    <a href="http://localhost:3000/makanapabackend" data-role="button" style="width:100%" rel="external">Backend</a>
+		</div>
+	</div>
+
+	<!--JQuery is needed for Jquery Mobile-->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<!--custom setting for JQuery Mobile, must be called before JQuery Mobile-->
+	<!--<script src="/javascripts/PhonegapCustomizedInit.js"></script>-->
+	<!--JQuery Mobile javascript library-->
+	<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+	<script type="text/javascript">
+			$("#result").click(function(){
+				var arrayRestaurant = [];
+				//arrayRestaurant = ['Burger King', 'Pizza Hut'];//OK
+				var jsonObjRestaurant = <%- JSON.stringify (serverArrayRestaurant) %>
+				arrayRestaurant = jsonObjRestaurant.arrayRestaurant;
+				var randomResult = arrayRestaurant[Math.floor((Math.random()*arrayRestaurant.length)+0)];
+				console.log("result: "+randomResult);
+				$("#result").text(randomResult);
+			});
+	</script>
+
+</body>
+</html>
