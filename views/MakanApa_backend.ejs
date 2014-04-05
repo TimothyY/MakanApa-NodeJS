@@ -51,7 +51,7 @@
 
 		<!--footer-->
 		<div data-role="footer" data-id="foo1" data-position="fixed">
-		    <a href="http://localhost:3000/makanapa" data-role="button" style="width:100%" rel="external">Frontend</a>
+		    <a href="/makanapa" data-role="button" style="width:100%" rel="external">Frontend</a>
 		</div>
 	</div>
 
@@ -92,11 +92,11 @@
 		$("#btnSubmitInputAdd").click(function(){
 			var newRestaurantValue = $("#inputAdd").val();
 			$.post(
-				"http://localhost:3000/makanapabackend/addrestaurant", 
+				"/makanapabackend/addrestaurant", 
 				{newRestaurant: newRestaurantValue}
 			).done(function( data ) {
 				console.log(data);
-    			window.location = "http://localhost:3000/makanapabackend";
+    			window.location = "/makanapabackend";
   			});
 		});
 	</script>
