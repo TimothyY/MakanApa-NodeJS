@@ -19,11 +19,16 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://insanelysaneme.azurewebsites.net/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
-    //User.findOrCreate(..., function(err, user) {
-      if (err) { return done(err); }
-      done(null, user);
-    });
+    // asynchronous
+	process.nextTick(function() {
+
+		// find the user in the database based on their facebook id
+    	//User.findOrCreate(..., function(err, user) {
+    	User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+      		if (err) { return done(err); }
+    		  done(null, user);
+    	});
+  	});
   }
 ));
 ///////////////////////////////////////////////////////////////////////////////////////////
