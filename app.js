@@ -20,7 +20,7 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous
-	process.nextTick(function() {
+	//process.nextTick(function() {
 
 		// find the user in the database based on their facebook id
     	//User.findOrCreate(..., function(err, user) {
@@ -28,7 +28,7 @@ passport.use(new FacebookStrategy({
       		if (err) { return done(err); }
     		  done(null, user);
     	});
-  	});
+  	//});
   }
 ));
 ///////////////////////////////////////////////////////////////////////////////////////////
