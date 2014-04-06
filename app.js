@@ -17,8 +17,8 @@ passport.use(new FacebookStrategy({
     clientSecret: "3d2b728362149f6e4b1eaa5a0751891d",
     //callbackURL: "http://www.example.com/auth/facebook/callback"
     //callbackURL: "https://insanelysaneme.azurewebsites.net/auth/facebook/callback"
-    //callbackURL: "http://insanelysaneme.azurewebsites.net/auth/facebook/callback"
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "http://insanelysaneme.azurewebsites.net/auth/facebook/callback"
+    //callbackURL: "http://localhost:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous
