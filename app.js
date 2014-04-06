@@ -67,6 +67,9 @@ app.post("/makanapabackend/addrestaurant",routes.addrestaurant);
 app.post("/getrestaurant",routes.getrestaurant);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+
+app.enable("trust proxy");
+
 // Redirect the user to Facebook for authentication.  When complete,
 // Facebook will redirect the user back to the application at
 //     /auth/facebook/callback
